@@ -4,6 +4,8 @@ from datetime import datetime
 import json
 from flask_mail import Mail
 import math
+import smtplib
+from email.message import EmailMessage
 
 from datetime import datetime
 
@@ -14,7 +16,7 @@ app.secret_key='hello'
 app.config.update(
     MAIL_SERVER='smtp.google.com',
     MAIL_PORT='465',
-    MAIL_USE_SSL= True,
+    MAIL_USE_SSL= False,
     MAIL_USERNAME=params['gmail_user'],
     MAIL_PASSWORD=params['gmail_pass']
 
@@ -143,15 +145,27 @@ def contact():
         name=request.form.get('name')
         email=request.form.get('email')
         subject=request.form.get('subject')
-        msg=request.form.get('message')
+        emsg=request.form.get('message')
 
-        entry=Contacts(name=name,email=email,subject=subject,msg=msg,datetime=datetime.now())
+        entry=Contacts(name=name,email=email,subject=subject,msg=emsg,datetime=datetime.now())
         db.session.add(entry)
         db.session.commit()
-        mail.send_message("New msg from" + name,sender=email,recipients=[params['gmail_user']],
-                          body= msg + '\n'+ email
-                          )
-    return redirect(url_for("Home") + "?status=sent#contact")  # ✅ correct
+       
+        # Create the email
+        msg = EmailMessage()
+        msg['Subject'] = 'New Message From ' + name
+        msg['From'] = 'sonardarshan508@gmail.com'
+        msg['To'] = 'codecrackup@gmail.com'
+        mail_msg=f"Email={email}\nSubject={subject}\nMessage={emsg}"
+        msg.set_content(mail_msg.title())
+
+        # Connect to Gmail's SMTP server
+        with smtplib.SMTP_SSL('smtp.gmail.com', 465) as smtp:
+            smtp.login('sonardarshan508@gmail.com', 'tayg lnjd zjuj qrcp')
+            smtp.send_message(msg)
+
+        print("Email sent!")
+    return redirect(url_for("Home") + "?status=sent#contact")  
 
 
 @app.route("/logout")

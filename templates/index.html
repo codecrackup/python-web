@@ -335,7 +335,7 @@ Blending code, creativity, and real-world tech to build the future — from AI t
                 }
         </style>
         <div class="btn">
-        <a href="/codes_list"><button> More </button>
+        <a href="/codes_list"><button> More </button> </a>
     
         </div>
         </div>
@@ -392,41 +392,42 @@ Blending code, creativity, and real-world tech to build the future — from AI t
           </div>
 
           <div class="col-lg-7">
-            <form action="/contact" method="POST" class="php-email-form" data-aos="fade-up" data-aos-delay="200">
-              <div class="row gy-4">
+            <form action="/contact" method="post">
 
-                <div class="col-md-6">
-                  <label for="name-field" class="pb-2">Your Name</label>
-                  <input type="text" name="name" id="name-field" class="form-control" required="">
-                </div>
+              <style>
+                button{
+                  margin-left: 43%;
+                }
 
-                <div class="col-md-6">
-                  <label for="email-field" class="pb-2">Your Email</label>
-                  <input type="email" class="form-control" name="email" id="email-field" required="">
-                </div>
+                .mb-3 input{
+                  border: 0.75px solid;
+                }
 
-                <div class="col-md-12">
-                  <label for="subject-field" class="pb-2">Subject</label>
-                  <input type="text" class="form-control" name="subject" id="subject-field" required="">
-                </div>
-
-                <div class="col-md-12">
-                  <label for="message-field" class="pb-2">Message</label>
-                  <textarea class="form-control" name="message" rows="10" id="message-field" required=""></textarea>
-                </div>
-
-                <div class="col-md-12 text-center">
-                  <div class="loading">Your message has been sent. Thank you!</div>
-                  
-                  <div class="sent-message"></div>
-                  <div class="error-message"></div>
-                  
-
-                  <button type="submit">Send Message</button>
-                  
-                </div>
-
+                .mb-3 textarea{
+                  border: 0.75px solid;
+                  height: 5cm;
+                }
+              </style>
+              <div class="mb-3">
+                <label for="name" class="form-label">Your name</label>
+                <input type="text" class="form-control" id="name"  name="name" autocomplete="off">
               </div>
+              
+              <div class="mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" class="form-control" id="email" aria-describedby="emailHelp" name="email">
+              </div>
+              <div class="mb-3">
+                <label for="subject" class="form-label">Subject</label>
+                <input type="text" class="form-control" id="subject" name="subject" autocomplete="off">
+              </div>
+
+              <div class="mb-3">
+                <label for="message" class="form-label">Message</label>
+                <textarea  class="form-control" id="message" name="message"></textarea>
+              </div>
+              
+              <button type="submit" class="btn btn-primary">Submit</button>
             </form>
           </div><!-- End Contact Form -->
 

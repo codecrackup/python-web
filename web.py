@@ -2,7 +2,6 @@ from flask import Flask, render_template, request , redirect , url_for ,session
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 import json
-from flask_mail import Mail
 import math
 import smtplib
 from email.message import EmailMessage

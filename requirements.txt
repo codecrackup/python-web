@@ -2,3 +2,4 @@ flask_sqlalchemy
 flask
 gunicorn
 flask_mail
+MySQLdb
